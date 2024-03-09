@@ -1,0 +1,18 @@
+{% extends 'seasons/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+	{% for s in stories %}
+    {% if s.photo %}
+		<p><img class="img-article-left thumb" src="{{ s.photo.url }}"></p>
+	{% endif %}
+			<li><h2>{{s.title}}</h2>
+	{% autoescape on %}
+	{{s.content|linebreaks|truncatewords:80}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ s.get_absolute_url }}">Читать историю</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}

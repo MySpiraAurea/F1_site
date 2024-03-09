@@ -1,0 +1,7 @@
+{% for s in sidebar %}
+    {% if s.function == category %}
+        <li class="selected">{{ s.title }}</li>
+    {% else %}
+        <li><a href="{% url s.function %}">{{ s.title }}</a></li>
+    {% endif %}
+{% endfor %}

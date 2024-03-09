@@ -1,0 +1,62 @@
+{% load static %}
+{% load seasons_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'seasons/css/styles.css' %}" rel="stylesheet" />
+    <link rel="shortcut icon" href="{% static 'seasons/images/mainicon.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class='table-page'  border=0 cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign=top>
+            {% show_mainmenu %}
+
+    <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top" class="left-chapters">
+                <ul id="leftchapters">
+
+                    {% for s in sidebar %}
+    {% if s.function == category %}
+        <li class="selected">{{ s.title }}</li>
+    {% else %}
+        <li><a href="{% url s.function %}">{{ s.title }}</a></li>
+    {% endif %}
+{% endfor %}
+
+                    <li class="share">
+		                <p>Наш канал</p>
+		                <a class="share-yt" href="https://www.youtube.com/@Formula1" target="_blank" rel="nofollow"></a>
+		            </li>
+                </ul>
+            </td>
+
+            <td valign="top" class="content">
+	        <!-- Хлебные крошки -->
+	            {% block breadcrumbs %}
+	            {% endblock %}
+                <!-- Блок контента -->
+	            <div class="content-text">
+                    {% block content %}
+                    {% endblock %}
+	            </div>
+                <!-- Конец блока контента -->
+            </td>
+        </tr>
+    </table>
+<!-- Footer -->
+    <tr>
+        <td valign=top>
+	        <div id="footer">
+		        <p>&copy; 2021 Частичное или полное копирование информации с данного сайта для распространения на других ресурсах, в том числе и бумажных, строго запрещено.</p>
+	        </div>
+        </td>
+    </tr>
+</table>
+<!-- Конец footer'а и страницы -->
+</body>
+</html>

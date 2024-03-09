@@ -1,0 +1,18 @@
+{% extends 'seasons/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+	{% for n in news %}
+    {% if n.photo %}
+		<p><img class="img-article-left thumb" src="{{ n.photo.url }}"></p>
+	{% endif %}
+			<li><h2>{{n.title}}</h2>
+	{% autoescape on %}
+	{{n.content|linebreaks|truncatewords:70}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ n.get_absolute_url }}">Читать новость</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}
